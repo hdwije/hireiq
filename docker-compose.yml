@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: hireiq-postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: hireiq
+      POSTGRES_PASSWORD: hireiq
+      POSTGRES_DB: hireiq
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: hireiq-redis
+    ports:
+      - 6379:6379
+
+volumes:
+  postgres_data:
