@@ -1,8 +1,8 @@
-
 {
   "name": "hireiq",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
