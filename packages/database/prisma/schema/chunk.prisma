@@ -1,7 +1,8 @@
 model Chunk {
-  id        String   @id @default(uuid())
+  id        String                      @id @default(uuid())
   content   String
-  createdAt DateTime @default(now())
+  embedding Unsupported("vector(768)")?
+  createdAt DateTime                    @default(now())
 
   documentId String
   document   Document @relation(fields: [documentId], references: [id])
