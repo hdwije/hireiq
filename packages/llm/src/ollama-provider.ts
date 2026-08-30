@@ -1,6 +1,6 @@
 import { LlmProvider } from './llm-provider.interface';
 
-const OLLAMA_URL = 'http://localhost:11434';
+const OLLAMA_URL = 'http://127.0.0.1:11434';
 
 export class OllamaProvider implements LlmProvider {
   async embed(text: string): Promise<number[]> {
@@ -14,7 +14,7 @@ export class OllamaProvider implements LlmProvider {
     });
 
     const data = await response.json();
-    return data.embedding;
+    return data.embeddings[0];
   }
 
   async generateAnswer(question: string, context: string): Promise<string> {
