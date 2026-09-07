@@ -9,6 +9,7 @@ import {
 import { AuthService } from './auth.service';
 import { SigninDto, SignupDto } from './dtos';
 import { JwtGuard } from './guards';
+import { AuthUser } from './types';
 
 @Controller('auth')
 export class AuthController {
@@ -27,12 +28,7 @@ export class AuthController {
   @Get('user')
   @UseGuards(JwtGuard)
   getAuthUser(@Request() req: Express.Request) {
-    const user = req.user as {
-      userId: string;
-      email: string;
-      tenantId: string;
-    };
-
+    const user: AuthUser = req.user as AuthUser;
     return this.authService.getAuthUser(user.userId);
   }
 }
