@@ -1,15 +1,9 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SigninDto, SignupDto } from './dtos';
 import { JwtGuard } from './guards';
-import { AuthUser } from './types';
+import type { AuthUser } from './types';
+import { CurrentUser } from './decorators/current-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -27,8 +21,7 @@ export class AuthController {
 
   @Get('user')
   @UseGuards(JwtGuard)
-  getAuthUser(@Request() req: Express.Request) {
-    const user: AuthUser = req.user as AuthUser;
-    return this.authService.getAuthUser(user.userId);
+  getAuthUser(@CurrentUser() authUser: AuthUser) {
+    return this.authService.getAuthUser(authUser.userId);
   }
 }
