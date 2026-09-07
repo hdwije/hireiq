@@ -32,3 +32,7 @@ docker compose up -d
 # Run all apps
 pnpm dev
 ```
+
+### Environment Setup
+
+Copy `.env.example` to `.env` in `apps/api` and `packages/database`, then fill in your values.
