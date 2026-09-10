@@ -32,6 +32,12 @@ export class AuthController {
     return { message: 'Logged in' };
   }
 
+  @Post('signout')
+  signout(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('token');
+    return { message: 'Logged out' };
+  }
+
   @Get('user')
   @UseGuards(JwtGuard)
   getAuthUser(@CurrentUser() authUser: AuthUser) {
